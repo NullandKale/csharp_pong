@@ -25,7 +25,8 @@ namespace pong
             b = new ball(d, 3, pd);
 
             //c = new Controllers.PlayerController();
-            c = new Controllers.PerfectAI();
+            //c = new Controllers.PerfectAI();
+            c = new Controllers.PerfectAiHybrid();
 
             while (!i.IsKeyFalling(OpenTK.Input.Key.Escape))
             {

@@ -68,6 +68,7 @@
     <Compile Include="ball.cs" />
     <Compile Include="Controllers\iController.cs" />
     <Compile Include="Controllers\PerfectAI.cs" />
+    <Compile Include="Controllers\PerfectAiHybrid.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="display.cs" />
     <Compile Include="gameBoard.cs" />
