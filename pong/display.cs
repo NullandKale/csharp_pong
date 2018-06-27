@@ -19,7 +19,7 @@ namespace pong
         {
             xMax = Console.WindowWidth - 2;
             yMax = Console.WindowHeight - 2;
-            screenBuffer = new Dictionary<vector2, char>(new vector2HashCode());
+            screenBuffer = new Dictionary<vector2, char>((xMax * yMax / 2), new vector2HashCode());
             toDisplay = new char[xMax + 1];
         }
 
@@ -27,7 +27,7 @@ namespace pong
         {
             xMax = x;
             yMax = y;
-            screenBuffer = new Dictionary<vector2, char>(new vector2HashCode());
+            screenBuffer = new Dictionary<vector2, char>((xMax * yMax / 2), new vector2HashCode());
             toDisplay = new char[xMax];
         }
 

@@ -13,6 +13,7 @@ namespace pong
         public static int hits;
         public static int misses;
         public static int bounces;
+        public static int fps;
 
         private static display d;
         private static gameBoard gb;
@@ -25,21 +26,37 @@ namespace pong
             i = new InputManager();
             d = new display();
             gb = new gameBoard(d);
-            pd = new paddle(2, d, 2);
+            pd = new paddle(2, d, 1);
             b = new ball(d, 4, pd);
 
             //c = new Controllers.PlayerController();
             //c = new Controllers.PerfectAI();
             c = new Controllers.PerfectAiHybrid();
 
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+            int counter = 0;
+
             while (!i.IsKeyFalling(OpenTK.Input.Key.Escape))
             {
+                stopwatch.Start();
+
                 i.Update();
                 d.draw();
                 doGameUpdate();
                 drawPoints();
 
                 System.Threading.Thread.Sleep(5);
+
+                stopwatch.Stop();
+
+                counter++;
+                fps = (int)(1.0 / ((double)stopwatch.ElapsedMilliseconds / (double)counter) * 1000.0);
+
+                if (counter > 200)
+                {
+                    stopwatch.Reset();
+                    counter = 0;
+                }
             }
         }
 
@@ -51,7 +68,7 @@ namespace pong
 
         public static void drawPoints()
         {
-            Console.Write("Hits/Misses/Bounces: " + hits + "/" + misses + "/" + bounces + "                        ");
+            Console.Write("Hits/Misses/Bounces: " + hits + "/" + misses + "/" + bounces + " FPS: " + fps + "                       ");
         }
     }
 }

@@ -42,7 +42,8 @@ namespace pong.Controllers
                 {
                     i++;
                 }
-                toReturn = vector2.add(toReturn, state.ballVelocity);
+                toReturn.x += state.ballVelocity.x;
+                toReturn.y += state.ballVelocity.y;
             }
 
             return toReturn;

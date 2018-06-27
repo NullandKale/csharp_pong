@@ -70,9 +70,12 @@ namespace pong
             startPos = pos - width;
             endPos = pos + width;
 
+            vector2 workingPos = new vector2(startPos, d.yMax);
+
             for(int i = startPos; i <= endPos; i++)
             {
-                d.clear(new vector2(i, d.yMax));
+                workingPos.x = i;
+                d.clear(workingPos);
             }
         }
 
@@ -81,9 +84,12 @@ namespace pong
             startPos = pos - width;
             endPos = pos + width;
 
+            vector2 workingPos = new vector2(startPos, d.yMax);
+
             for (int i = startPos; i <= endPos; i++)
             {
-                d.trySetChar(new vector2(i, d.yMax), '=');
+                workingPos.x = i;
+                d.trySetChar(workingPos, '=');
             }
         }
     }
