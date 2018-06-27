@@ -37,6 +37,10 @@ namespace pong
                 if (d.screenBuffer.ContainsKey(newPos))
                 {
                     outcome = bounce(newPos);
+                    if(outcome == lastMoveOutcome.neutral)
+                    {
+                        Program.bounces++;
+                    }
                 }
                 else
                 {
@@ -51,7 +55,7 @@ namespace pong
                     }
                 }
 
-                d.trySetChar(pos, '@');
+                d.trySetChar(pos, 'o');
 
             }
 
@@ -60,12 +64,12 @@ namespace pong
             switch (outcome)
             {
                 case lastMoveOutcome.good:
-                    Program.points++;
+                    Program.hits++;
                     break;
                 case lastMoveOutcome.neutral:
                     break;
                 case lastMoveOutcome.bad:
-                    Program.points--;
+                    Program.misses++;
                     break;
             }
 

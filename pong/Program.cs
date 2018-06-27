@@ -9,7 +9,11 @@ namespace pong
     class Program
     {
         public static InputManager i;
-        public static int points;
+
+        public static int hits;
+        public static int misses;
+        public static int bounces;
+
         private static display d;
         private static gameBoard gb;
         private static paddle pd;
@@ -21,8 +25,8 @@ namespace pong
             i = new InputManager();
             d = new display();
             gb = new gameBoard(d);
-            pd = new paddle(2, d, 1);
-            b = new ball(d, 3, pd);
+            pd = new paddle(2, d, 2);
+            b = new ball(d, 4, pd);
 
             //c = new Controllers.PlayerController();
             //c = new Controllers.PerfectAI();
@@ -35,7 +39,7 @@ namespace pong
                 doGameUpdate();
                 drawPoints();
 
-                System.Threading.Thread.Sleep(20);
+                System.Threading.Thread.Sleep(5);
             }
         }
 
@@ -47,8 +51,7 @@ namespace pong
 
         public static void drawPoints()
         {
-            Console.SetCursorPosition(0, d.yMax + 1);
-            Console.Write("Points: " + points + "                        ");
+            Console.Write("Hits/Misses/Bounces: " + hits + "/" + misses + "/" + bounces + "                        ");
         }
     }
 }

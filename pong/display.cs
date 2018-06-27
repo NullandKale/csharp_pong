@@ -13,11 +13,14 @@ namespace pong
 
         public readonly Dictionary<vector2, char> screenBuffer;
 
+        private char[] toDisplay;
+
         public display()
         {
             xMax = Console.WindowWidth - 2;
             yMax = Console.WindowHeight - 2;
             screenBuffer = new Dictionary<vector2, char>(new vector2HashCode());
+            toDisplay = new char[xMax + 1];
         }
 
         public display(int x, int y)
@@ -25,6 +28,7 @@ namespace pong
             xMax = x;
             yMax = y;
             screenBuffer = new Dictionary<vector2, char>(new vector2HashCode());
+            toDisplay = new char[xMax];
         }
 
         public bool trySetChar(vector2 pos, char toSet)
@@ -47,18 +51,16 @@ namespace pong
 
         public void draw()
         {
-            StringBuilder toDisplay = new StringBuilder();
             Console.SetCursorPosition(0, 0);
 
             for (int y = 0; y <= yMax; y++)
             {
                 for (int x = 0; x <= xMax; x++)
                 {
-                    toDisplay.Append(getChar(x, y));
+                    toDisplay[x] = getChar(x, y);
                 }
 
-                Console.WriteLine(toDisplay.ToString());
-                toDisplay.Clear();
+                Console.WriteLine(toDisplay);
             }
         }
 
@@ -157,17 +159,16 @@ namespace pong
             return (float)Math.Sqrt(Math.Pow(x - other.x, 2) + Math.Pow(y - other.y, 2));
         }
 
-        public bool Equals(vector2 X, vector2 Y)
+        public static bool Equals(vector2 X, vector2 Y)
         {
-            if (X.x == Y.x && X.y == Y.y)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (X.x == Y.x && X.y == Y.y);
         }
+
+        public bool Equals(vector2 Y)
+        {
+            return (x == Y.x && y == Y.y);
+        }
+
 
         public override int GetHashCode()
         {
@@ -179,14 +180,7 @@ namespace pong
     {
         public bool Equals(vector2 X, vector2 Y)
         {
-            if (X.x == Y.x && X.y == Y.y)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (X.x == Y.x && X.y == Y.y);
         }
 
         public int GetHashCode(vector2 obj)

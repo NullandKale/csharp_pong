@@ -8,9 +8,6 @@ namespace pong.Controllers
 {
     public class PerfectAI : iController
     {
-        private vector2 lastVelocity;
-        private vector2 lastDest;
-
         public vector2 getMove(gameState state)
         {
             if(state.ballVelocity.y > 0)
@@ -33,8 +30,18 @@ namespace pong.Controllers
         {
             vector2 toReturn = state.ballPos;
 
+            int i = 5;
+
             while(toReturn.y < state.paddlePos.y)
             {
+                if(i <= 0)
+                {
+                    break;
+                }
+                else
+                {
+                    i++;
+                }
                 toReturn = vector2.add(toReturn, state.ballVelocity);
             }
 
