@@ -16,7 +16,7 @@ namespace pong
         public static int fps;
 
         private static display d;
-        private static gameBoard gb;
+        public static gameBoard gb;
         private static paddle pd;
         private static ball b;
         private static iController c;
@@ -27,7 +27,7 @@ namespace pong
             d = new display();
             gb = new gameBoard(d);
             pd = new paddle(2, d, 1);
-            b = new ball(d, 4, pd);
+            b = new ball(d, 2, pd);
 
             //c = new Controllers.PlayerController();
             //c = new Controllers.PerfectAI();
@@ -41,7 +41,7 @@ namespace pong
                 stopwatch.Start();
 
                 i.Update();
-                d.draw(false);
+                d.draw(true);
                 doGameUpdate();
 
                 //System.Threading.Thread.Sleep(5);

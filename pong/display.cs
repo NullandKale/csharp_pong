@@ -69,7 +69,7 @@ namespace pong
             if(drawCounter > drawAmount)
             {
                 //Console.SetCursorPosition(0, 0);
-                drawPoints();
+                Console.WriteLine("Hits/Misses/Bounces: " + Program.hits + "/" + Program.misses + "/" + Program.bounces + " FPS: " + Program.fps + "                       ");
                 drawCounter = 0;
             }
 
@@ -94,7 +94,7 @@ namespace pong
 
         public static void drawPoints()
         {
-            Console.WriteLine("Hits/Misses/Bounces: " + Program.hits + "/" + Program.misses + "/" + Program.bounces + " FPS: " + Program.fps + "                       ");
+            Console.Write("Hits/Misses/Bounces: " + Program.hits + "/" + Program.misses + "/" + Program.bounces + " FPS: " + Program.fps + "                       ");
         }
 
         private vector2 getCache;
