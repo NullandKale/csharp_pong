@@ -41,11 +41,10 @@ namespace pong
                 stopwatch.Start();
 
                 i.Update();
-                d.draw();
+                d.draw(false);
                 doGameUpdate();
-                drawPoints();
 
-                System.Threading.Thread.Sleep(5);
+                //System.Threading.Thread.Sleep(5);
 
                 stopwatch.Stop();
 
@@ -63,12 +62,7 @@ namespace pong
         public static void doGameUpdate()
         {
             gb.update();
-            pd.reDraw(c.getMove(b.update()));
-        }
-
-        public static void drawPoints()
-        {
-            Console.Write("Hits/Misses/Bounces: " + hits + "/" + misses + "/" + bounces + " FPS: " + fps + "                       ");
+            pd.update(c.getMove(b.update()));
         }
     }
 }

@@ -49,7 +49,34 @@ namespace pong
             return screenBuffer.Remove(pos);
         }
 
-        public void draw()
+        public void draw(bool doFullDraw)
+        {
+            if(doFullDraw)
+            {
+                fullDraw();
+            }
+            else
+            {
+                onlyScoreDraw();
+            }
+        }
+
+        private int drawCounter;
+        private int drawAmount = 1000;
+
+        private void onlyScoreDraw()
+        {
+            if(drawCounter > drawAmount)
+            {
+                //Console.SetCursorPosition(0, 0);
+                drawPoints();
+                drawCounter = 0;
+            }
+
+            drawCounter++;
+        }
+
+        private void fullDraw()
         {
             Console.SetCursorPosition(0, 0);
 
@@ -62,6 +89,12 @@ namespace pong
 
                 Console.WriteLine(toDisplay);
             }
+            drawPoints();
+        }
+
+        public static void drawPoints()
+        {
+            Console.WriteLine("Hits/Misses/Bounces: " + Program.hits + "/" + Program.misses + "/" + Program.bounces + " FPS: " + Program.fps + "                       ");
         }
 
         private vector2 getCache;

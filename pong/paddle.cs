@@ -25,7 +25,7 @@ namespace pong
             posCache = new vector2(pos, d.yMax);
         }
 
-        public void reDraw(vector2 move)
+        public void update(vector2 move)
         {
             if (counter % skipAmount == 0)
             {
